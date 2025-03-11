@@ -3,6 +3,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #ff9500;
+  --primary-foreground: #ffffff;
+  --secondary: #1e88e5;
+  --secondary-foreground: #ffffff;
+  --accent: #ff5500;
+  --accent-foreground: #ffffff;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #ff9500;
 }
 
 @theme inline {
@@ -16,11 +29,56 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #ff9500;
+    --primary-foreground: #ffffff;
+    --secondary: #1e88e5;
+    --secondary-foreground: #ffffff;
+    --accent: #ff5500;
+    --accent-foreground: #ffffff;
+    --muted: #1a1a1a;
+    --muted-foreground: #a3a3a3;
+    --card: #171717;
+    --card-foreground: #ededed;
+    --border: #333333;
+    --input: #333333;
+    --ring: #ff9500;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Prevent blue highlight on mobile tap */
+* {
+  -webkit-tap-highlight-color: transparent;
 }

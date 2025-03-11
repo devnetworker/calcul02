@@ -1,0 +1,113 @@
+.button {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+  transition: transform 0.15s ease-out;
+  overflow: visible;
+  padding: 0;
+  background: transparent;
+}
+
+.buttonFace {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transform: translateZ(4px);
+  backface-visibility: hidden;
+  transition: all 0.15s ease-out;
+}
+
+.buttonShadow {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  transform: translateZ(0);
+  filter: blur(2px);
+}
+
+/* Default button style */
+.defaultButton .buttonFace {
+  background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+  color: #ffffff;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.defaultButton:hover .buttonFace {
+  background: linear-gradient(145deg, #404040, #303030);
+}
+
+.defaultButton:active .buttonFace {
+  background: linear-gradient(145deg, #303030, #404040);
+}
+
+/* Operator button style */
+.operatorButton .buttonFace {
+  background: linear-gradient(145deg, #ff9500, #ff8000);
+  color: #ffffff;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.operatorButton:hover .buttonFace {
+  background: linear-gradient(145deg, #ffa000, #ff8500);
+}
+
+.operatorButton:active .buttonFace {
+  background: linear-gradient(145deg, #ff8500, #ffa000);
+}
+
+/* Function button style */
+.functionButton .buttonFace {
+  background: linear-gradient(145deg, #555555, #444444);
+  color: #ffffff;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.functionButton:hover .buttonFace {
+  background: linear-gradient(145deg, #606060, #505050);
+}
+
+.functionButton:active .buttonFace {
+  background: linear-gradient(145deg, #505050, #606060);
+}
+
+/* Button press effect */
+.button:active {
+  transform: translateY(4px);
+}
+
+.button:active .buttonShadow {
+  transform: translateY(-2px) translateZ(0);
+  opacity: 0.5;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 400px) {
+  .button {
+    height: 50px;
+    font-size: 1.25rem;
+  }
+} 
