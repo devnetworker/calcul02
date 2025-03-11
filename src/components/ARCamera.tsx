@@ -13,11 +13,17 @@ const ARCamera: React.FC<ARCameraProps> = ({ onDetection }) => {
   const [isActive, setIsActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [detectedCount, setDetectedCount] = useState<number>(0);
+  const [hasNavigator, setHasNavigator] = useState(false);
+
+  // Check if navigator is available (client-side only)
+  useEffect(() => {
+    setHasNavigator(typeof navigator !== 'undefined' && !!navigator.mediaDevices);
+  }, []);
 
   // Start the camera
   const startCamera = async () => {
     try {
-      if (!videoRef.current) return;
+      if (!videoRef.current || !hasNavigator) return;
       
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' }
@@ -139,6 +145,7 @@ const ARCamera: React.FC<ARCameraProps> = ({ onDetection }) => {
           className={`${styles.cameraButton} ${isActive ? styles.active : ''}`}
           onClick={toggleCamera}
           aria-label={isActive ? 'Stop camera' : 'Start camera'}
+          disabled={!hasNavigator}
         >
           <svg viewBox="0 0 24 24" width="24" height="24">
             <path d="M12 15V17M6 12H3M6 12C6 16.4183 9.58172 20 14 20C18.4183 20 22 16.4183 22 12C22 7.58172 18.4183 4 14 4C9.58172 4 6 7.58172 6 12ZM14 8V10" 
@@ -170,6 +177,12 @@ const ARCamera: React.FC<ARCameraProps> = ({ onDetection }) => {
           >
             Use this count in calculator
           </button>
+        </div>
+      )}
+      
+      {!hasNavigator && (
+        <div className={styles.errorMessage}>
+          Camera API is not available in your browser or device.
         </div>
       )}
     </div>

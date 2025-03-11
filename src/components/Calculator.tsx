@@ -16,8 +16,12 @@ const Calculator: React.FC<CalculatorProps> = ({ onResultChange }) => {
   const [operator, setOperator] = useState<string | null>(null);
   const [waitingForOperand, setWaitingForOperand] = useState<boolean>(false);
   const [memory, setMemory] = useState<number>(0);
+  const [hasVibration, setHasVibration] = useState(false);
 
   useEffect(() => {
+    // Check if vibration API is available
+    setHasVibration(typeof navigator !== 'undefined' && 'vibrate' in navigator);
+    
     if (onResultChange) {
       onResultChange(display);
     }
@@ -25,7 +29,7 @@ const Calculator: React.FC<CalculatorProps> = ({ onResultChange }) => {
 
   // Function to provide haptic feedback if available
   const triggerHapticFeedback = () => {
-    if (navigator.vibrate) {
+    if (hasVibration) {
       navigator.vibrate(20); // 20ms vibration
     }
   };

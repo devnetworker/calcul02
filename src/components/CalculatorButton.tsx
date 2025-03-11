@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useThree } from '@react-three/fiber';
 import styles from './CalculatorButton.module.css';
 
 type ButtonType = 'default' | 'operator' | 'function';
